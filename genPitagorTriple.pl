@@ -4,6 +4,8 @@ between(A,B,C):- A=<B, A1 is A+1 , between(A1,B,C).
 indexOfList([H|_],0,H).
 indexOfList([_|T],K,Elem):- K>0 ,  Km1 is K-1,indexOfList(T,Km1,Elem).
 
+
+
 len([],0).
 len([_|T],N):- len(T,M) , N is M+1.
 
