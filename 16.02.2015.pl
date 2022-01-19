@@ -51,21 +51,16 @@ intersection([],_,Z,Z).
 intersection([H|T],Y,Z,Rest):- member(H,Y), append(Rest,[H],NewRest), intersection(T,Y,Z,NewRest).
 intersection([H|T],Y,Z,Rest):- not(member(H,Y)),intersection(T,Y,Z,Rest).
 intersection(X,Y,Z):-intersection(X,Y,Z,[]).
-%for all 2 elements in X and have intersection = 3
-%not exist 2 elements in X and not have intersection = 3
 insert(X,L,RL):-append(A,B,L),append(A,[X|B],RL).
 permutation([],[]).
 permutation([H|T],R):-permutation(T,L), insert(H,L,R).
 isSorted([_]).
 isSorted([H1,H2|T]):- H1=<H2 ,isSorted([H2|T]).
-
 filter([H],Filtered,Rest):-append(Rest,[H],Filtered).
 filter([H1,H2|T],Filtered,Rest):- H1=\=H2 , append(Rest,[H1],NewRest), filter([H2|T],Filtered,NewRest).
 filter([H1,H2|T],Filtered,Rest):- H1=:=H2 , filter([H2|T],Filtered,Rest).
- 
 q(X):- not((member(X1,X), member(X2,X), not((intersection(X1,X2,XI),permutation(XI,PXI),
                                         isSorted(PXI),filter(PXI,IntXI,[]), len(IntXI,K), K>=3   ))    )).
-
 r(X):- len(X,N), N>0, rCond(X,N).
 rCond([],_).
 rCond([H|T],N):- len(H,N2), 2*N>=N2, rCond(T,N).
