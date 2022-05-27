@@ -4,7 +4,7 @@ edge([_,E],X,Y):-member([X,Y],E), member([Y,X],E).
 
 
 path(_,B,B,VISITED,PATH):-reverse([B|VISITED],PATH).
-path([V,E],X,Y,VISITED,PATH):-edge([V,E],X,Z,VISITED,PATH), not(member(Z,VISITED)) , path([V,E],Z,Y,[X|VISITED]).
+path([V,E],X,Y,VISITED,PATH):- path([V,E],X,Z,VISITED,PATH), not(member(Z,VISITED)) , path([V,E],Z,Y,[X|VISITED]).
 path([V,E],X,Y,PATH):-path([V,E],X,Y,[],PATH).
 
 hasCycle([V,E],[X|Path]):-edge([V,E],X,Y),path([V,E],Y,X,Path), length(Path,N),N>2.
